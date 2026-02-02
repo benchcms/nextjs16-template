@@ -5,11 +5,8 @@ A minimal Next.js template ready for Vercel deployment.
 ## Quick Start
 
 ```bash
-# Install dependencies
-pnpm install
-
-# Start development server
-pnpm dev
+pnpm install   # Install dependencies
+pnpm dev       # Start development server
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to see your site.
@@ -23,78 +20,68 @@ Open [http://localhost:3000](http://localhost:3000) to see your site.
 > **⚠️ IMPORTANT: Always use `pnpm` for all package operations.**
 >
 > This project uses **pnpm** exclusively. Do NOT use `npm` or `yarn`.
->
-> - Install dependencies: `pnpm install`
-> - Add a package: `pnpm add <package>`
-> - Run scripts: `pnpm <script>` (e.g., `pnpm dev`, `pnpm build`)
 
 ### Stack
 
 - **Next.js 16** with App Router
 - **Tailwind CSS 4** for styling
 - **TypeScript** for type safety
-- **pnpm** as package manager (see above)
+- **pnpm** as package manager
 
 ### Code Style
 
-Always format code according to:
-
-- `.prettierrc` — Prettier configuration
-- `.editorconfig` — Editor settings
-
-Run `pnpm format` to auto-format all files.
+Format code according to `.prettierrc` and `.editorconfig`. Run `pnpm format` to auto-format.
 
 ### Creating Pages
 
-Create new pages in the `app/` folder:
+Create pages in `app/` using the App Router convention:
 
 ```
 app/
-├── page.tsx          → yoursite.com/
-├── about/page.tsx    → yoursite.com/about
-├── contact/page.tsx  → yoursite.com/contact
+├── page.tsx          → /
+├── about/page.tsx    → /about
 ```
 
-Each page exports a default React component:
+### Page Content Structure
+
+> **⚠️ MANDATORY: Always separate data from presentation in page files.**
+
+Structure every page with:
+
+1. **Data layer** (top) — A typed constant holding all page content
+2. **Presentation layer** (below) — JSX that consumes the data
 
 ```tsx
-export default function About() {
-  return (
-    <main className="p-8">
-      <h1 className="text-3xl font-bold">About Us</h1>
-      <p className="mt-4">Your content here...</p>
-    </main>
-  )
+// DATA
+const features = [
+  { id: 'fast', title: 'Fast', description: '...' },
+  { id: 'secure', title: 'Secure', description: '...' },
+] as const
+
+// PRESENTATION
+export default function Page() {
+  return features.map((f) => <Card key={f.id} {...f} />)
 }
 ```
 
-### Styling with Tailwind
+**Rules:**
 
-Use Tailwind classes directly in JSX:
+- All user-facing text lives in the data layer, never hardcoded in JSX
+- Use `as const` for type safety
+- Each item must have an `id` or unique key
 
-```tsx
-<div className="rounded-lg bg-blue-500 p-4 text-white">Styled box</div>
-```
+### Styling
 
-Key patterns:
-
-- `flex`, `grid` — Layout
-- `p-4`, `m-2`, `gap-4` — Spacing
-- `text-xl`, `font-bold` — Typography
-- `bg-*`, `text-*` — Colors
-- `rounded-lg`, `shadow-md` — Effects
-- `hover:*`, `dark:*` — States
+Use Tailwind classes directly in JSX. Key patterns: `flex`, `grid`, `p-4`, `m-2`, `gap-4`, `text-xl`, `font-bold`, `bg-*`, `text-*`, `rounded-lg`, `shadow-md`, `hover:*`, `dark:*`.
 
 ### Images
 
-Put images in `public/` folder:
+Place images in `public/` and use `next/image`:
 
 ```tsx
-import Image from 'next/image'
-;<Image src="/photo.jpg" alt="Description" width={800} height={600} />
+<Image src="/photo.jpg" alt="Description" width={800} height={600} />
 ```
 
 ### Deployment
 
-Push to GitHub, then import in [vercel.com](https://vercel.com).
-Vercel auto-deploys on every push.
+Push to GitHub, then import in [vercel.com](https://vercel.com). Vercel auto-deploys on every push.

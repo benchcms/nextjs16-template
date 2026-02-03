@@ -18,25 +18,18 @@ A minimal Next.js template ready for deployment.
 >
 > This project uses **pnpm** exclusively. Do NOT use `npm` or `yarn`.
 
-## Getting Started
-
-```bash
-pnpm install   # Install dependencies
-pnpm dev       # Start development server
-```
-
-Open [http://localhost:3000](http://localhost:3000) to see your site.
-
 ---
 
 ## Development Guidelines
 
 ### Project Structure
 
-All application code lives inside `src/`:
+All application code (including `lib`, `utils`, `hooks`, etc.) lives inside `src/`. Notable directories include:
 
 - **`src/app/`** — Pages and layouts (App Router convention)
 - **`src/components/`** — Reusable React components
+- **`src/actions/`** — Server actions
+- **`src/schemas/`** — Zod validation schemas
 
 ### Resources Folder
 
@@ -159,7 +152,8 @@ This project uses [Resend](https://resend.com) for sending emails. Skills are in
 
 Always validate your work before finishing:
 
-1. Run `pnpm format` to ensure code style consistency
-2. Run `pnpm build` to verify the project compiles without errors
+1. Run `pnpm install` to ensure all dependencies are installed
+2. Run `pnpm format` to ensure code style consistency
+3. Run `pnpm build` to verify the project compiles without errors
 
 Fix any issues before considering the task complete.

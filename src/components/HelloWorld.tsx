@@ -1,8 +1,19 @@
+import Image from 'next/image'
+
 export function HelloWorld() {
   return (
-    <div className="rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 p-8 text-center text-white shadow-lg">
-      <h2 className="text-2xl font-bold">Hello World! 👋</h2>
-      <p className="mt-2 opacity-90">Welcome to your Next.js template</p>
+    <div className="flex flex-col items-center gap-6">
+      <Image
+        src="/benchcms.png"
+        alt="BenchCMS"
+        width={400}
+        height={400}
+        className="rounded-lg shadow-lg"
+      />
+      <div className="text-center">
+        <h2 className="text-2xl font-bold text-gray-900">Next.js 16 Template</h2>
+        <p className="mt-2 text-gray-600">Ready for deployment</p>
+      </div>
     </div>
   )
 }

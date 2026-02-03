@@ -1,8 +1,24 @@
-# Website Template
+# Agent Instructions
 
 A minimal Next.js template ready for deployment.
 
-## Quick Start
+## Overview
+
+### Tech Stack
+
+- **Next.js 16** with App Router
+- **Tailwind CSS 4** for styling
+- **TypeScript** for type safety
+- **Zod** for validation
+- **Resend** for email
+
+### Package Manager
+
+> **⚠️ IMPORTANT: Always use `pnpm` for all package operations.**
+>
+> This project uses **pnpm** exclusively. Do NOT use `npm` or `yarn`.
+
+## Getting Started
 
 ```bash
 pnpm install   # Install dependencies
@@ -13,21 +29,20 @@ Open [http://localhost:3000](http://localhost:3000) to see your site.
 
 ---
 
-## For AI Assistants
+## Development Guidelines
 
-### Package Manager
+### Project Structure
 
-> **⚠️ IMPORTANT: Always use `pnpm` for all package operations.**
->
-> This project uses **pnpm** exclusively. Do NOT use `npm` or `yarn`.
+> **⚠️ IMPORTANT: All application code must live inside `src/`.**
 
-### Stack
+- **`src/app/`** — Pages and layouts (App Router convention)
+- **`src/components/`** — Reusable React components
 
-- **Next.js 16** with App Router
-- **Tailwind CSS 4** for styling
-- **TypeScript** for type safety
-- **Zod** for validation
-- **Resend** for email
+### Naming Conventions
+
+- **Folders/directories**: `kebab-case` (e.g., `user-profile/`, `contact-form/`)
+- **React components**: `PascalCase` (e.g., `UserProfile.tsx`, `ContactForm.tsx`)
+- **Component exports**: Use **named exports**, not default exports (e.g., `export function HelloWorld()` instead of `export default function HelloWorld()`)
 
 ### Code Style
 
@@ -35,15 +50,7 @@ Format code according to `.prettierrc` and `.editorconfig`. Run `pnpm format` to
 
 ---
 
-### Creating Pages
-
-Create pages in `app/` using the App Router convention:
-
-```
-app/
-├── page.tsx          → /
-├── about/page.tsx    → /about
-```
+## Component Patterns
 
 ### Server & Client Components
 
@@ -51,8 +58,13 @@ app/
 
 - By default, all components are **Server Components** — keep them that way
 - Only add `'use client'` when absolutely necessary (interactivity, hooks, browser APIs)
-- Isolate client logic into small, leaf-level components (e.g., `<MobileMenuToggle />`)
+- Isolate client logic into small, leaf-level components
 - Never wrap entire pages or layouts with `'use client'`
+
+**Expected exceptions** (these require `'use client'`):
+
+- Mobile menu toggle buttons and dropdown menus (requires `useState` for open/close)
+- Forms with `useActionState` for handling submissions and validation feedback
 
 ### Page Content Structure
 
@@ -82,15 +94,17 @@ export default function Page() {
 
 ---
 
+## UI & Styling
+
 ### Responsive Design
 
 > **⚠️ MANDATORY: Mobile-first approach. All pages must be fully responsive.**
 
 - Start with mobile layout, then enhance for larger screens using `sm:`, `md:`, `lg:` breakpoints
-- **Always include a mobile navigation menu** with a hamburger toggle button
+- **Always include a mobile navigation menu** with a hamburger toggle button (this requires a small client component for the toggle state — see "Expected exceptions" above)
 - Test layouts at all breakpoints: mobile (default), tablet (`md:`), desktop (`lg:`)
 
-### Styling
+### Tailwind Styling
 
 Use Tailwind classes directly in JSX. Key patterns: `flex`, `grid`, `p-4`, `m-2`, `gap-4`, `text-xl`, `font-bold`, `bg-*`, `text-*`, `rounded-lg`, `shadow-md`, `hover:*`, `dark:*`.
 
@@ -105,6 +119,8 @@ Place images in `public/` and use `next/image`:
 When creating visual assets (hero images, illustrations, icons), use image generation capabilities if available instead of placeholders. This produces polished, working demonstrations.
 
 ---
+
+## Features
 
 ### Forms & Validation
 
@@ -129,7 +145,7 @@ This project uses [Resend](https://resend.com) for sending emails. Skills are in
 
 ---
 
-### Validation
+## Verification
 
 Always validate your work before finishing:
 

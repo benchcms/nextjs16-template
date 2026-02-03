@@ -92,17 +92,18 @@ Place images in `public/` and use `next/image`:
 <Image src="/photo.jpg" alt="Description" width={800} height={600} />
 ```
 
+### Image Generation
+
+When creating visual assets (hero images, illustrations, icons), use image generation capabilities if available instead of placeholders. This produces polished, working demonstrations.
+
 ### Email (Resend)
 
 This project uses [Resend](https://resend.com) for sending emails. Skills are installed in `.agents/skills/resend/` with symlinks for compatibility:
 
 - `.claude/skills/resend` → Claude Code
 - `.agent/skills/resend` → Antigravity
+- `.cursor/skills/resend` → Cursor
 
 **Setup:** Set `RESEND_API_KEY` environment variable (see `.env.example`).
 
 **Usage:** Read `.agents/skills/resend/SKILL.md` for routing to sub-skills (send-email, resend-inbound, agent-email-inbox).
-
-### Image Generation
-
-When creating visual assets (hero images, illustrations, icons), use image generation capabilities if available instead of placeholders. This produces polished, working demonstrations.

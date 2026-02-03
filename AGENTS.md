@@ -26,7 +26,8 @@ Open [http://localhost:3000](http://localhost:3000) to see your site.
 - **Next.js 16** with App Router
 - **Tailwind CSS 4** for styling
 - **TypeScript** for type safety
-- **pnpm** as package manager
+- **Zod** for validation
+- **Resend** for email
 
 ### Code Style
 
@@ -70,6 +71,15 @@ export default function Page() {
 - Use `as const` for type safety
 - Each item must have an `id` or unique key
 
+### Forms & Validation
+
+> **⚠️ MANDATORY: Always use Server Actions for form handling.**
+
+- Use `useActionState` (React 19) with `prevState` pattern for form submissions
+- Validate form data with **Zod** on both client-side (UX) and server-side (security)
+- Share the same Zod schema between client and server to avoid duplication
+- Return typed error/success state from server actions
+
 ### Styling
 
 Use Tailwind classes directly in JSX. Key patterns: `flex`, `grid`, `p-4`, `m-2`, `gap-4`, `text-xl`, `font-bold`, `bg-*`, `text-*`, `rounded-lg`, `shadow-md`, `hover:*`, `dark:*`.
@@ -82,10 +92,6 @@ Place images in `public/` and use `next/image`:
 <Image src="/photo.jpg" alt="Description" width={800} height={600} />
 ```
 
-### Deployment
-
-Push to GitHub, then import in [vercel.com](https://vercel.com). Vercel auto-deploys on every push.
-
 ### Email (Resend)
 
 This project uses [Resend](https://resend.com) for sending emails. Skills are installed in `.agents/skills/resend/` with symlinks for compatibility:
@@ -96,3 +102,7 @@ This project uses [Resend](https://resend.com) for sending emails. Skills are in
 **Setup:** Set `RESEND_API_KEY` environment variable (see `.env.example`).
 
 **Usage:** Read `.agents/skills/resend/SKILL.md` for routing to sub-skills (send-email, resend-inbound, agent-email-inbox).
+
+### Image Generation
+
+When creating visual assets (hero images, illustrations, icons), use image generation capabilities if available instead of placeholders. This produces polished, working demonstrations.

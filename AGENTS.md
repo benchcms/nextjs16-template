@@ -1,6 +1,6 @@
 # Website Template
 
-A minimal Next.js template ready for Vercel deployment.
+A minimal Next.js template ready for deployment.
 
 ## Quick Start
 
@@ -33,6 +33,8 @@ Open [http://localhost:3000](http://localhost:3000) to see your site.
 
 Format code according to `.prettierrc` and `.editorconfig`. Run `pnpm format` to auto-format.
 
+---
+
 ### Creating Pages
 
 Create pages in `app/` using the App Router convention:
@@ -43,11 +45,18 @@ app/
 ├── about/page.tsx    → /about
 ```
 
+### Server & Client Components
+
+> **⚠️ MANDATORY: Prefer Server Components. Push Client Components to the leaves.**
+
+- By default, all components are **Server Components** — keep them that way
+- Only add `'use client'` when absolutely necessary (interactivity, hooks, browser APIs)
+- Isolate client logic into small, leaf-level components (e.g., `<MobileMenuToggle />`)
+- Never wrap entire pages or layouts with `'use client'`
+
 ### Page Content Structure
 
-> **⚠️ MANDATORY: Always separate data from presentation in page files.**
-
-Structure every page with:
+Always separate data from presentation in page files:
 
 1. **Data layer** (top) — A typed constant holding all page content
 2. **Presentation layer** (below) — JSX that consumes the data
@@ -71,14 +80,15 @@ export default function Page() {
 - Use `as const` for type safety
 - Each item must have an `id` or unique key
 
-### Forms & Validation
+---
 
-> **⚠️ MANDATORY: Always use Server Actions for form handling.**
+### Responsive Design
 
-- Use `useActionState` (React 19) with `prevState` pattern for form submissions
-- Validate form data with **Zod** on both client-side (UX) and server-side (security)
-- Share the same Zod schema between client and server to avoid duplication
-- Return typed error/success state from server actions
+> **⚠️ MANDATORY: Mobile-first approach. All pages must be fully responsive.**
+
+- Start with mobile layout, then enhance for larger screens using `sm:`, `md:`, `lg:` breakpoints
+- **Always include a mobile navigation menu** with a hamburger toggle button
+- Test layouts at all breakpoints: mobile (default), tablet (`md:`), desktop (`lg:`)
 
 ### Styling
 
@@ -92,9 +102,18 @@ Place images in `public/` and use `next/image`:
 <Image src="/photo.jpg" alt="Description" width={800} height={600} />
 ```
 
-### Image Generation
-
 When creating visual assets (hero images, illustrations, icons), use image generation capabilities if available instead of placeholders. This produces polished, working demonstrations.
+
+---
+
+### Forms & Validation
+
+Use Server Actions for form handling:
+
+- Use `useActionState` (React 19) with `prevState` pattern for form submissions
+- Validate form data with **Zod** on both client-side (UX) and server-side (security)
+- Share the same Zod schema between client and server to avoid duplication
+- Return typed error/success state from server actions
 
 ### Email (Resend)
 
@@ -107,3 +126,14 @@ This project uses [Resend](https://resend.com) for sending emails. Skills are in
 **Setup:** Set `RESEND_API_KEY` environment variable (see `.env.example`).
 
 **Usage:** Read `.agents/skills/resend/SKILL.md` for routing to sub-skills (send-email, resend-inbound, agent-email-inbox).
+
+---
+
+### Validation
+
+Always validate your work before finishing:
+
+1. Run `pnpm format` to ensure code style consistency
+2. Run `pnpm build` to verify the project compiles without errors
+
+Fix any issues before considering the task complete.

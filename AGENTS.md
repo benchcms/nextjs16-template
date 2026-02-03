@@ -33,10 +33,20 @@ Open [http://localhost:3000](http://localhost:3000) to see your site.
 
 ### Project Structure
 
-> **⚠️ IMPORTANT: All application code must live inside `src/`.**
+All application code lives inside `src/`:
 
 - **`src/app/`** — Pages and layouts (App Router convention)
 - **`src/components/`** — Reusable React components
+
+### Resources Folder
+
+The `resources/` folder at the project root contains client-provided materials:
+
+- **Specifications** — Project briefs, requirements, client requests
+- **Branding** — Brand guidelines, color palettes, typography
+- **Assets** — Logos, images, icons, and visuals
+
+Always review this folder first to understand the project scope and available assets. These files are **read-only reference materials** — do not modify them.
 
 ### Naming Conventions
 
@@ -54,7 +64,7 @@ Format code according to `.prettierrc` and `.editorconfig`. Run `pnpm format` to
 
 ### Server & Client Components
 
-> **⚠️ MANDATORY: Prefer Server Components. Push Client Components to the leaves.**
+> **⚠️ IMPORTANT: Prefer Server Components. Push Client Components to the leaves.**
 
 - By default, all components are **Server Components** — keep them that way
 - Only add `'use client'` when absolutely necessary (interactivity, hooks, browser APIs)
@@ -98,10 +108,10 @@ export default function Page() {
 
 ### Responsive Design
 
-> **⚠️ MANDATORY: Mobile-first approach. All pages must be fully responsive.**
+Use a mobile-first approach — all pages must be fully responsive:
 
 - Start with mobile layout, then enhance for larger screens using `sm:`, `md:`, `lg:` breakpoints
-- **Always include a mobile navigation menu** with a hamburger toggle button (this requires a small client component for the toggle state — see "Expected exceptions" above)
+- Always include a mobile navigation menu with a hamburger toggle button (this requires a small client component for the toggle state — see "Expected exceptions" above)
 - Test layouts at all breakpoints: mobile (default), tablet (`md:`), desktop (`lg:`)
 
 ### Tailwind Styling

@@ -1,20 +1,20 @@
-# BenchCMS Template
+# Next.js 16 Template
 
-A static website generator assisted by AI. This template is optimized for AI-driven development of static websites.
+A high-performance Next.js template optimized for AI-assisted development.
 
-## Workflow
+## Tech Stack
 
-1. **Populate Context**: Place all specifications, branding, and assets into the `resources/` folder. This is the single source of truth.
-2. **Build**: Instruct your AI assistant to generate the website. It will follow the conventions in `AGENTS.md` to implement the website using the provided resources.
+- **Next.js 16** (App Router)
+- **Tailwind CSS 4**
+- **TypeScript**
+- **Zod**
+- **shadcn/ui**
+- **Resend** (Email)
 
-## Configuration
+## Guidelines
 
-To enable contact forms, rename `.env.example` to `.env.local` and add your `RESEND_API_KEY`.
+Development standards and project structure are documented in [AGENTS.md](./AGENTS.md).
 
-## Stack
+## Getting Started
 
-- Next.js 16 (App Router)
-- Tailwind CSS 4
-- TypeScript
-- Zod
-- Resend
+Clone this repository and start your AI agent.

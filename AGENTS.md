@@ -18,6 +18,7 @@ A minimal Next.js template ready for deployment.
 > **⚠️ IMPORTANT: Always use `pnpm` for all package operations.**
 >
 > This project uses **pnpm** exclusively. Do NOT use `npm` or `yarn`.
+> **Do NOT install new packages** unless explicitly requested by the developer.
 
 ---
 
@@ -106,6 +107,8 @@ Use a mobile-first approach — all pages must be fully responsive:
 
 - Start with mobile layout, then enhance for larger screens using `sm:`, `md:`, `lg:` breakpoints
 - Always include a mobile navigation menu using the **shadcn drawer** component
+  - The drawer component handles its own open/close state and logic
+  - It only needs to be included in a client component and follow the shadcn example
 - Test layouts at all breakpoints: mobile (default), tablet (`md:`), desktop (`lg:`)
 
 ### Tailwind Styling
@@ -135,6 +138,7 @@ Use Server Actions for form handling:
 
 - Use `useActionState` (React 19) with `prevState` pattern for form submissions
 - Validate form data with **Zod** on both client-side (UX) and server-side (security)
+- **NO extra form packages** (e.g., react-hook-form) — simple forms + Zod validation is sufficient
 - Share the same Zod schema between client and server to avoid duplication
 - Return typed error/success state from server actions
 

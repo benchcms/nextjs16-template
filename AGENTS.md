@@ -156,7 +156,10 @@ This project uses [Resend](https://resend.com) for sending emails. The skill is 
 
 - `.claude/skills/resend` → Claude Code
 
-**Setup:** Set `RESEND_API_KEY` environment variable (see `.env.example`).
+**Setup:** (see `.env.example`)
+
+- `RESEND_API_KEY`: API key for sending emails via Resend.
+- `CONTACT_FORM_EMAIL`: The recipient email address for contact form submissions (the "to" address).
 
 **Usage:** Read `.agents/skills/resend/SKILL.md` for routing to sub-skills (send-email, resend-inbound, agent-email-inbox).
 
